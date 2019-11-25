@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // var session = require('express-session')
 // app.use(session({ saveUninitialized: false, resave: false, secret: 'keyboard cat', cookie: { maxAge: 6000000000 } }))
 
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // create a GET route

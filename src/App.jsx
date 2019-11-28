@@ -7,7 +7,7 @@ import { TopBar } from './AppBar';
 
 let deck = shuffleArray(cards);
 
-function shuffleArray(cardsDeck: {}[]) {
+function shuffleArray(cardsDeck) {
   for (let i = cardsDeck.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [cardsDeck[i], cardsDeck[j]] = [cardsDeck[j], cardsDeck[i]];
@@ -17,24 +17,24 @@ function shuffleArray(cardsDeck: {}[]) {
   return cardsDeck;
 }
 
-
-const App: React.FC = () => {
-  const [username, setUsername] = useState<string | undefined>("x");// Change back to undefined
-  const usernameRef = useRef<HTMLInputElement>()
-  const passwordRef = useRef<HTMLInputElement>()
-  const [cardsInBoard, updateCardsInBoard] = useState<any[]>([])
+export default function App() {
+  const [username, setUsername] = useState("32"); //change back to undefined
+  const usernameRef = useRef()
+  const passwordRef = useRef()
+  const [cardsInBoard, updateCardsInBoard] = useState([])
 
 
   function renderCards() {
     return cardsInBoard.map((card, index) => {
       const cardName = `${card.number}${card.kind[0]}`
-      return <div className="card" key={cardName}> <img src={require(`./images/${cardName}.jpg`)} width="100px" height="150px" /></div >
+      return <div className="card" key={cardName}>
+        <img src={require(`./images/${cardName}.jpg`)} alt={index} width="100px" height="150px" /></div >
     })
   }
 
   function signIn() {
-    let usernameSignin: string;
-    let passwordSignin: string;
+    let usernameSignin;
+    let passwordSignin;
 
     if (usernameRef.current && passwordRef.current) {
       usernameSignin = usernameRef.current.value;
@@ -83,5 +83,3 @@ const App: React.FC = () => {
     );
   }
 }
-
-export default App;

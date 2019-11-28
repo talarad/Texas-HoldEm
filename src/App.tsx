@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SignIn } from './SignIn';
 import './App.css';
+import { TemporaryDrawer } from './drawer';
 
 const App: React.FC = () => {
   const [username, setUsername] = useState<string | undefined>(undefined);
@@ -38,6 +39,10 @@ const App: React.FC = () => {
   } else {
     return (
       <div className="App">
+        <div className="App">
+        <TemporaryDrawer />
+        <div className="bottom-table" />
+      </div> 
         <div className="bottom-table" />
       </div>
     );

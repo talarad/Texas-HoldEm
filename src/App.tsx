@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SignIn } from './SignIn';
 import './App.css';
-import { TemporaryDrawer } from './drawer';
+import { TopBar } from './AppBar';
 
 const App: React.FC = () => {
-  const [username, setUsername] = useState<string | undefined>(undefined);
+  const [username, setUsername] = useState<string | undefined>("x");// Change back to undefined
   const usernameRef = useRef<HTMLInputElement>()
   const passwordRef = useRef<HTMLInputElement>()
 
@@ -38,12 +38,11 @@ const App: React.FC = () => {
     return <SignIn signIn={signIn} usernameRef={usernameRef} passwordRef={passwordRef} />
   } else {
     return (
-      <div className="App">
-        <div className="App">
-        <TemporaryDrawer />
-        <div className="bottom-table" />
-      </div> 
-        <div className="bottom-table" />
+      <div>
+          <TopBar />
+        <div className="gameWrap">
+          <div className="bottom-table" />
+        </div> 
       </div>
     );
   }

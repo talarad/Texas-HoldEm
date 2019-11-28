@@ -7,8 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import { IconButton } from '@material-ui/core';
 
 const useStyles = makeStyles({ 
   list: {
@@ -52,8 +52,15 @@ export const TemporaryDrawer: React.FC<{}> = (p) => {
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer('left', true)}>Open Left</Button>
+    <div >
+        <div >
+            <IconButton 
+                onClick={toggleDrawer('left', true)}
+                style={{color: "white"}}
+            >
+                <ContactsIcon />
+            </IconButton>
+        </div>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>

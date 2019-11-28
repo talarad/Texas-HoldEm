@@ -19,13 +19,13 @@ const useStyles = makeStyles({
   },
 });
 
-export const TemporaryDrawer: React.FC<{}> = (p) => {
+export function TemporaryDrawer(p) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false
   });
 
-  const toggleDrawer = (side: string, open: boolean): React.EventHandler<any> => (
+  const toggleDrawer = (side, open) => (
     (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -35,7 +35,7 @@ export const TemporaryDrawer: React.FC<{}> = (p) => {
     }
   );
 
-  const sideList = (side: string) => (
+  const sideList = (side) => (
     <div
       className={classes.list}
       onClick={toggleDrawer(side, false)}

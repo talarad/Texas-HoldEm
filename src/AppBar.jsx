@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { TemporaryDrawer } from './drawer';
 import { ButtonAppBar } from './MuiAppBar';
 
-export const TopBar: React.FC<{}> = (p) => {
+export const TopBar = (p) => {
     return (
-        <div >
+        <div id="top-bar">
             <div >
                 <ButtonAppBar />
             </div>

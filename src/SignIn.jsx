@@ -26,7 +26,7 @@ function Copyright() {
     );
 }
 
-export const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -47,13 +47,7 @@ export const useStyles = makeStyles(theme => ({
 }));
 
 
-export interface ISignInProps {
-    signIn: any,
-    usernameRef: any,
-    passwordRef: any
-}
-
-export const SignIn: React.FC<ISignInProps> = (props) => {
+export function SignIn(props) {
     const classes = useStyles();
     return (
         <Container component="main" maxWidth="xs">

@@ -3,6 +3,7 @@ import { SignIn } from './SignIn';
 import './App.css';
 import { TemporaryDrawer } from './drawer';
 import cards from './cards'
+import { TopBar } from './AppBar';
 
 let deck = shuffleArray(cards);
 
@@ -16,8 +17,9 @@ function shuffleArray(cardsDeck: {}[]) {
   return cardsDeck;
 }
 
+
 const App: React.FC = () => {
-  const [username, setUsername] = useState<string | undefined>(undefined);
+  const [username, setUsername] = useState<string | undefined>("x");// Change back to undefined
   const usernameRef = useRef<HTMLInputElement>()
   const passwordRef = useRef<HTMLInputElement>()
   const [cardsInBoard, updateCardsInBoard] = useState<any[]>([])
@@ -26,7 +28,7 @@ const App: React.FC = () => {
   function renderCards() {
     return cardsInBoard.map((card, index) => {
       const cardName = `${card.number}${card.kind[0]}`
-      return <div className="card"  key={cardName}> <img src={require(`./images/${cardName}.jpg`)} width="100px" height="150px" /></div >
+      return <div className="card" key={cardName}> <img src={require(`./images/${cardName}.jpg`)} width="100px" height="150px" /></div >
     })
   }
 
@@ -58,7 +60,7 @@ const App: React.FC = () => {
 
   function addRandomCard() {
     const newDeck = [...cardsInBoard]
-    const randomNum = Math.floor(Math.random()*(deck.length));
+    const randomNum = Math.floor(Math.random() * (deck.length));
     newDeck.push(deck[randomNum]);
     deck.splice(randomNum, 1)
 
@@ -77,7 +79,11 @@ const App: React.FC = () => {
           </div>
           {renderCards()}
         </div>
-      </div >
+        <TopBar />
+        <div className="gameWrap">
+          <div className="bottom-table" />
+        </div>
+      </div>
     );
   }
 }

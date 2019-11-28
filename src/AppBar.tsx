@@ -4,7 +4,7 @@ import { ButtonAppBar } from './MuiAppBar';
 
 export const TopBar: React.FC<{}> = (p) => {
     return (
-        <div >
+        <div id="topBar">
             <div >
                 <ButtonAppBar />
             </div>

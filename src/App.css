@@ -31,3 +31,9 @@
   padding-top: 10px;
   align-items: center;
 }
+
+#topBar{
+  width: 100%;
+  align-self: flex-start;
+  align-items: stretch;
+}

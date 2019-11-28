@@ -71,17 +71,13 @@ const App: React.FC = () => {
     return <SignIn signIn={signIn} usernameRef={usernameRef} passwordRef={passwordRef} />
   } else {
     return (
-      <div className="App">
-        <TemporaryDrawer />
+      <div className="gameWrap">
+        <TopBar />
         <div className="bottom-table">
           <div>
             <button onClick={addRandomCard}>ADD CARD</button>
           </div>
           {renderCards()}
-        </div>
-        <TopBar />
-        <div className="gameWrap">
-          <div className="bottom-table" />
         </div>
       </div>
     );

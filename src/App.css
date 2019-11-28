@@ -11,6 +11,7 @@
 }
 
 .bottom-table {
+  padding-top: -100px;
   background: #ffffff;
   display: inline-block;
   margin: 0 1em 1em 0;
@@ -18,4 +19,8 @@
   width: 900px;
   border-bottom-left-radius: 500px;
   border-bottom-right-radius: 500px;
+}
+
+.center {
+  text-align: center;
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const bodyParser = require('body-parser');
 
 app.set('trust proxy', 1)
@@ -12,7 +12,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// create a GET route
 app.post('/', (req, res) => {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+  if (req.body.usernameSignin && req.body.passwordSignin) {
+    res.send({ status: true });
+  } else {
+    res.send({ status: false });
+
+  }
 });

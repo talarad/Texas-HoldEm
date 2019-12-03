@@ -3,6 +3,7 @@ import { SignIn } from './SignIn';
 import './App.css';
 import { TemporaryDrawer } from './drawer';
 import cards from './cards'
+import Player from './Player'
 import { TopBar } from './AppBar';
 
 let deck = shuffleArray(cards);
@@ -18,17 +19,53 @@ function shuffleArray(cardsDeck) {
 }
 
 export default function App() {
+  const [gameDeck, updateGameDeck] = useState(deck)
   const [username, setUsername] = useState("32"); //change back to undefined
   const usernameRef = useRef()
   const passwordRef = useRef()
-  const [cardsInBoard, updateCardsInBoard] = useState([])
+  const [cardsOnBoard, updateCardsOnBoard] = useState([])
+  const [numOfPlayers, addNumOfPlayers] = useState(4)
+  const [playersHands, updatePlayersHands] = useState(new Array(numOfPlayers))
 
+  useEffect(() => {
+    const newDeck = [...gameDeck]
+    const currentPlayersHands = [...playersHands]
+
+    currentPlayersHands.forEach(function (hand, index) {
+      let randomNumber = Math.floor(Math.random() * (newDeck.length - 1));
+      const firstCard = newDeck[randomNumber]
+      console.log(newDeck[randomNumber])
+
+      newDeck.splice(randomNumber, 1)
+
+      randomNumber = Math.floor(Math.random() * (newDeck.length - 1));
+      console.log(newDeck[randomNumber])
+      const secondCard = newDeck[randomNumber];
+
+      newDeck.splice(randomNumber, 1)
+
+
+      currentPlayersHands[index] = {
+        0: firstCard,
+        1: secondCard
+      }
+    })
+
+    updateGameDeck(newDeck)
+    updatePlayersHands(currentPlayersHands)
+  }, []);
 
   function renderCards() {
-    return cardsInBoard.map((card, index) => {
+    return cardsOnBoard.map((card, index) => {
       const cardName = `${card.number}${card.kind[0]}`
       return <div className="card" key={cardName}>
         <img src={require(`./images/${cardName}.jpg`)} alt={index} width="100px" height="150px" /></div >
+    })
+  }
+
+  function renderPlayers() {
+    return playersHands.map((hand, i) => {
+      return <Player hand={hand} key={i} />
     })
   }
 
@@ -54,17 +91,22 @@ export default function App() {
         }
       })
     } else {
-      console.log(1111)
+      console.log("err")
     }
   }
 
   function addRandomCard() {
-    const newDeck = [...cardsInBoard]
-    const randomNum = Math.floor(Math.random() * (deck.length));
-    newDeck.push(deck[randomNum]);
-    deck.splice(randomNum, 1)
 
-    updateCardsInBoard(newDeck)
+    const currentCards = [...cardsOnBoard]
+    const newDeck = [...gameDeck]
+
+    const randomNum = Math.floor(Math.random() * (newDeck.length));
+    currentCards.push(newDeck[randomNum]);
+
+    newDeck.splice(randomNum, 1)
+
+    updateGameDeck(newDeck)
+    updateCardsOnBoard(currentCards)
   }
 
   if (!username) {
@@ -78,6 +120,9 @@ export default function App() {
             <button onClick={addRandomCard}>ADD CARD</button>
           </div>
           {renderCards()}
+        </div>
+        <div className="players">
+          {renderPlayers()}
         </div>
       </div>
     );

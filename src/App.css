@@ -37,3 +37,19 @@
   align-self: flex-start;
   align-items: stretch;
 }
+
+.players {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.player {
+  padding-right: 75px;
+  padding-left: 75px;
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: 150px;
+  /* border: solid 1px black; */
+}
